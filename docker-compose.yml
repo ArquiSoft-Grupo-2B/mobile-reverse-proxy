@@ -1,0 +1,15 @@
+services:
+  mobile_nginx:
+    image: nginx:latest
+    container_name: mobile_nginx
+    ports:
+      - '8443:443'
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    networks:
+      - orchestration_net
+
+networks:
+  orchestration_net:
+    external: true
