@@ -9,7 +9,10 @@ services:
       - ./certs:/etc/nginx/certs:ro
     networks:
       - orchestration_net
+      - public_net
 
 networks:
   orchestration_net:
+    external: true
+  public_net:
     external: true
