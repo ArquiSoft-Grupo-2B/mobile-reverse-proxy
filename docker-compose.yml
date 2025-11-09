@@ -1,7 +1,6 @@
 services:
   mobile_nginx:
     image: nginx:latest
-    cf
     ports:
       - '8443:443'
     volumes:
