@@ -1,5 +1,6 @@
 services:
-  mobile_nginx:
+  mobile-reverse-proxy:
+    container_name: mobile-reverse-proxy
     image: nginx:latest
     ports:
       - '8443:443'
