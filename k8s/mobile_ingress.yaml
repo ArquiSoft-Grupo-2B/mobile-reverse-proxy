@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mobile-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/proxy-set-headers: "default/mobile-proxy-headers"
+    
+spec:
+  ingressClassName: nginx
+
+  tls:
+    - hosts:
+        - mobile.runpath.duckdns.org
+      secretName: mobile-tls
+
+  rules:
+    - host: mobile.runpath.duckdns.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api-gateway-service
+                port:
+                  number: 80
